@@ -1,0 +1,218 @@
+.pokemon-card {
+    background: linear-gradient(135deg, #d1d5db 0%, #f3f4f6 50%, #9ca3af 100%);
+    border-radius: 16px;
+    border: none;
+    padding: 10px;
+    color: var(--type-text);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+
+    // Holo shine effect
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%);
+        transform: skewX(-25deg);
+        transition: left 0.5s;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    &:hover {
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+
+        &::before {
+            left: 150%;
+            transition: left 0.7s ease-in-out;
+        }
+
+        .pokemon-image {
+            transform: scale(1.25) translateY(-5px);
+            filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.5));
+        }
+    }
+}
+
+.inner-content {
+    // Dynamic Gradient Background
+    background: linear-gradient(135deg, var(--type-main) 0%, var(--type-dark) 100%);
+    border-radius: 8px;
+    padding: 8px;
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index: 1;
+
+    // Subtle texture/pattern overlay could go here, but keeping it clean for now
+}
+
+.image-frame {
+    background: rgba(255, 255, 255, 0.4); // More transparent to let gradient show
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 6px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.gold-bar {
+    background: linear-gradient(90deg, #fcd34d 0%, #fef3c7 40%, #fcd34d 100%);
+    border-top: 1px solid #b45309;
+    border-bottom: 1px solid #b45309;
+    transform: skewX(-15deg);
+    margin-left: -4px;
+    margin-right: -4px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+
+    .skew-text {
+        transform: skewX(15deg);
+        font-size: 0.7rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        color: #78350f;
+        letter-spacing: 0.5px;
+    }
+}
+
+.attacks-container {
+    background: var(--type-light);
+    border-radius: 4px;
+    padding: 8px;
+    flex-grow: 1;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.silver-bottom-edge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(to top, #9ca3af, #d1d5db);
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+// Extracted styles from JSX
+.pokemon-name {
+    color: white; // Ensure contrast on darker gradients
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    font-size: 1.1em;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.stat-value {
+    color: white;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.type-circle {
+    width: 26px;
+    height: 26px;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    backdrop-filter: blur(2px);
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+}
+
+.image-container {
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // Gradient matching the type but lighter
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.9) 20%, var(--type-light) 100%);
+    overflow: visible !important;
+    border-radius: 4px; // Ensure it matches container
+}
+
+// Float animation removed as requested
+
+.pokemon-image {
+    z-index: 10;
+    max-height: 110%;
+    width: auto;
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.4));
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.image-overlay {
+    display: none; // Removing old overlay to clean up
+}
+
+.add-button {
+    width: 32px;
+    height: 32px;
+    // Stronger Metallic Gradient for visibility
+    background: linear-gradient(135deg, #ffffff 0%, #d1d5db 50%, #9ca3af 100%);
+    color: #111827; // Almost black for max contrast
+    border: 2px solid white; // Thicker border
+    z-index: 30;
+    opacity: 1; // Ensure it's never transparent
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); // Bouncy
+
+    &:hover {
+        transform: scale(1.15);
+        // Brighter gradient on hover (Shiny effect)
+        background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 4px 6px rgba(0, 0, 0, 0.3); // Glow
+        color: #000000 !important;
+    }
+
+    &.added {
+        background: #4b5563;
+        color: #d1d5db;
+        border-color: #374151;
+        box-shadow: none;
+        cursor: not-allowed;
+        transform: none;
+    }
+}
+
+.stat-icon-circle {
+    width: 16px;
+    height: 16px;
+    background: rgba(0, 0, 0, 0.15);
+    color: inherit;
+}
+
+.defense-icon-circle {
+    width: 20px;
+    height: 20px;
+}
+
+.type-badge {
+    background-color: var(--type-dark);
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.35em 0.8em;
+    font-weight: normal;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,288 @@
+:root {
+    /* Premium Dark Theme Palette */
+    --color-bg-main: #0f172a;
+    --color-bg-secondary: #1e293b;
+    --color-accent-primary: #6366f1;
+    --color-accent-glow: rgba(99, 102, 241, 0.5);
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #94a3b8;
+
+    /* Glassmorphism */
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(148, 163, 184, 0.1);
+    --glass-blur: 12px;
+
+    /* Typography System */
+    --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+    /* Font Weights */
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+
+    /* Font Sizes (1rem = 10px) */
+    --font-size-h1: 4.8rem;
+    --font-size-h2: 3.6rem;
+    --font-size-h3: 2.4rem;
+    --font-size-body: 1.6rem;
+    --font-size-small: 1.4rem;
+    --font-size-tiny: 1.2rem;
+
+    /* Line Heights */
+    --line-height-h1: 1.2;
+    --line-height-body: 1.5;
+
+    /* Letter Spacing */
+    --letter-spacing-tight: -0.02em;
+    --letter-spacing-normal: 0em;
+    --letter-spacing-wide: 0.05em;
+
+    /* Types Colors (Pokemon) */
+    --type-normal: #a8a77a;
+    --type-fire: #ee8130;
+    --type-water: #6390f0;
+    --type-electric: #f7d02c;
+    --type-grass: #7ac74c;
+    --type-ice: #96d9d6;
+    --type-fighting: #c22e28;
+    --type-poison: #a33ea1;
+    --type-ground: #e2bf65;
+    --type-flying: #a98ff3;
+    --type-psychic: #f95587;
+    --type-bug: #a6b91a;
+    --type-rock: #b6a136;
+    --type-ghost: #735797;
+    --type-dragon: #6f35fc;
+    --type-steel: #b7b7ce;
+    --type-fairy: #d685ad;
+}
+
+html {
+    font-size: 62.5%;
+    /* 1rem = 10px */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-primary);
+    min-height: 100vh;
+    font-size: var(--font-size-body);
+    /* Gradient removed to prevent banding artifacts */
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Utilities */
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid var(--glass-border);
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-primary {
+    background-color: var(--color-accent-primary);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 0 15px var(--color-accent-glow);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px var(--color-accent-glow);
+}
+
+.hover-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.hover-action:hover {
+    opacity: 1 !important;
+}
+
+/* Battle Animations */
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-5px) rotate(-5deg);
+    }
+
+    75% {
+        transform: translateX(5px) rotate(5deg);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes attack-right {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(50px) scale(1.2);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes attack-left {
+    0% {
+        transform: translateX(0);
+    }
+
+    50% {
+        transform: translateX(-50px) scale(1.2);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+        filter: grayscale(0);
+    }
+
+    100% {
+        opacity: 0.5;
+        filter: grayscale(1);
+    }
+}
+
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+.animate-attack-right {
+    animation: attack-right 0.3s ease-in-out;
+}
+
+.animate-attack-left {
+    animation: attack-left 0.3s ease-in-out;
+}
+
+.animate-faint {
+    animation: fade-out 0.5s forwards;
+}
+
+.title-gradient {
+    background: linear-gradient(to right, #6366f1, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg-main);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-bg-secondary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-primary);
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Typography Utilities */
+.text-h1-b {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-extrabold);
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-h1);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-h2-b {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-h2);
+    line-height: var(--line-height-h1);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-h3-b {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-h3);
+    line-height: var(--line-height-body);
+}
+
+.text-body-1 {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+}
+
+.text-body-2 {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-small);
+    line-height: var(--line-height-body);
+}
+
+.text-caption {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-tiny);
+    line-height: var(--line-height-body);
+    color: var(--color-text-secondary);
+}
+
+.fw-regular {
+    font-weight: var(--font-weight-regular);
+}
+
+.fw-medium {
+    font-weight: var(--font-weight-medium);
+}
+
+.fw-bold {
+    font-weight: var(--font-weight-bold);
+}
+
+.fw-extrabold {
+    font-weight: var(--font-weight-extrabold);
+}
